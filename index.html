@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PixelOlof Städhjälp | Rent & Fint</title>
+  <meta name="description" content="Enkel och prisvärd städhjälp. Endast 40 kr per 30 minuter.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f9fc;
+      color: #17212b;
+      line-height: 1.6;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e8eef3;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      height: 70px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      color: #087f73;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #25313b;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: #087f73;
+    }
+
+    .nav-button {
+      background: #087f73;
+      color: white !important;
+      padding: 10px 17px;
+      border-radius: 10px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 700px;
+      padding: 140px 20px 80px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(30,190,170,0.16), transparent 30%),
+        linear-gradient(135deg, #ffffff, #edf9f7);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      width: 100%;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dff7f3;
+      color: #087f73;
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1.03;
+      letter-spacing: -2px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: #087f73;
+    }
+
+    .hero-text {
+      font-size: 20px;
+      color: #586671;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      padding: 15px 23px;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .primary {
+      background: #087f73;
+      color: white;
+    }
+
+    .primary:hover {
+      transform: translateY(-2px);
+      background: #05695f;
+    }
+
+    .secondary {
+      background: white;
+      color: #087f73;
+      border: 1px solid #d8e6e5;
+    }
+
+    .secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    /* PRICE CARD */
+
+    .price-card {
+      background: white;
+      padding: 38px;
+      border-radius: 25px;
+      box-shadow: 0 20px 60px rgba(20,50,60,0.12);
+      text-align: center;
+      border: 1px solid #edf1f3;
+    }
+
+    .clean-icon {
+      width: 90px;
+      height: 90px;
+      margin: auto auto 20px;
+      border-radius: 25px;
+      background: #e5f8f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .price-card h2 {
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .price {
+      font-size: 54px;
+      font-weight: 900;
+      color: #087f73;
+      line-height: 1;
+      margin: 15px 0 8px;
+    }
+
+    .price-small {
+      color: #687680;
+    }
+
+    .price-info {
+      margin: 25px 0;
+      padding: 15px;
+      background: #f5faf9;
+      border-radius: 12px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 90px 20px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #65737d;
+      margin-bottom: 45px;
+      font-size: 18px;
+    }
+
+    /* SERVICES */
+
+    .services {
+      background: white;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service {
+      padding: 30px;
+      border: 1px solid #e7edf0;
+      border-radius: 18px;
+      background: #fff;
+      transition: 0.2s;
+    }
+
+    .service:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(20,50,60,0.08);
+    }
+
+    .service-icon {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .service h3 {
+      margin-bottom: 8px;
+      font-size: 21px;
+    }
+
+    .service p {
+      color: #687680;
+    }
+
+    /* PRICING */
+
+    .pricing-box {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      border-radius: 22px;
+      padding: 35px;
+      box-shadow: 0 15px 50px rgba(20,50,60,0.08);
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid #edf0f2;
+      font-size: 18px;
+    }
+
+    .price-row:last-child {
+      border-bottom: none;
+    }
+
+    .price-row strong {
+      color: #087f73;
+    }
+
+    /* BOOKING */
+
+    .booking {
+      background: #edf9f7;
+    }
+
+    .booking-box {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 35px;
+      border-radius: 22px;
+      box-shadow: 0 15px 50px rgba(20,50,60,0.08);
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 7px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d9e2e6;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #087f73;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .submit {
+      width: 100%;
+      border: none;
+      background: #087f73;
+      color: white;
+      padding: 16px;
+      border-radius: 11px;
+      font-size: 17px;
+      font-weight: bold;
+      margin-top: 22px;
+      cursor: pointer;
+    }
+
+    .submit:hover {
+      background: #05695f;
+    }
+
+    /* SWISH */
+
+    .swish-section {
+      background: #ffffff;
+    }
+
+    .swish-card {
+      max-width: 700px;
+      margin: auto;
+      padding: 40px;
+      border-radius: 25px;
+      text-align: center;
+      background: #f4fbff;
+      border: 1px solid #dceff7;
+    }
+
+    .swish-logo {
+      font-size: 55px;
+      margin-bottom: 10px;
+    }
+
+    .swish-card h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .swish-number {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 20px 0;
+      letter-spacing: 1px;
+    }
+
+    .swish-button {
+      display: inline-block;
+      background: #00a8e8;
+      color: white;
+      padding: 16px 30px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .swish-button:hover {
+      background: #008bc1;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: #17252b;
+      color: white;
+      text-align: center;
+    }
+
+    .contact .section-subtitle {
+      color: #b8c6cc;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .contact-item {
+      background: rgba(255,255,255,0.08);
+      padding: 18px 25px;
+      border-radius: 12px;
+    }
+
+    .contact-item a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #101a1e;
+      color: #8fa0a8;
+      text-align: center;
+      padding: 25px 20px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 120px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 65px 20px;
+      }
+
+      .section-title {
+        font-size: 31px;
+      }
+
+      .price-card {
+        padding: 28px 20px;
+      }
+
+      .booking-box,
+      .swish-card {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <div class="nav-inner">
+
+      <a href="#" class="logo">
+        🧹 PixelOlof
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#tjanster">Tjänster</a></li>
+        <li><a href="#priser">Priser</a></li>
+        <li><a href="#boka">Boka</a></li>
+        <li><a href="#swish">Swish</a></li>
+        <li>
+          <a href="#kontakt" class="nav-button">
+            Kontakt
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <header class="hero">
+
+    <div class="hero-inner">
+
+      <div>
+
+        <div class="badge">
+          ✨ Enkel städhjälp
+        </div>
+
+        <h1>
+          Rent hem.<br>
+          <span>Enkelt pris.</span>
+        </h1>
+
+        <p class="hero-text">
+          Behöver du hjälp med städningen?
+          PixelOlof Städhjälp erbjuder enkel och
+          prisvärd hjälp för bara 40 kr per halvtimme.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#boka" class="button primary">
+            📅 Boka städhjälp
+          </a>
+
+          <a href="#priser" class="button secondary">
+            💰 Se priser
+          </a>
+        </div>
+
+      </div>
+
+
+      <div class="price-card">
+
+        <div class="clean-icon">
+          🧹
+        </div>
+
+        <h2>
+          Städhjälp
+        </h2>
+
+        <div class="price">
+          40 kr
+        </div>
+
+        <div class="price-small">
+          per 30 minuter
+        </div>
+
+        <div class="price-info">
+          💡 1 timme = <strong>80 kr</strong>
+        </div>
+
+        <a href="#boka" class="button primary">
+          Boka nu →
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- TJÄNSTER -->
+
+  <section id="tjanster" class="services">
+
+    <div class="section-inner">
+
+      <h2 class="section-title">
+        Vad kan vi hjälpa till med?
+      </h2>
+
+      <p class="section-subtitle">
+        Enkel hjälp med vardagens städning.
+      </p>
+
+
+      <div class="service-grid">
+
+        <div class="service">
+          <div class="service-icon">🧹</div>
+          <h3>Dammsugning</h3>
+          <p>
+            Hjälp med att dammsuga golv och
+            andra vanliga ytor.
+          </p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">🧽</div>
+          <h3>Torka av</h3>
+          <p>
+            Vi kan hjälpa till att torka av
+            bord, bänkar och andra ytor.
+          </p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">✨</div>
+          <h3>Enklare städning</h3>
+          <p>
+            Behöver du hjälp med något annat?
+            Hör av dig så kan vi prata om det.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRISER -->
+
+  <section id="priser">
+
+    <div class="section-inner">
+
+      <h2 class="section-title">
+        💰 Enkla priser
+      </h2>
+
+      <p class="section-subtitle">
+        Ingen krånglig prissättning.
+      </p>
+
+      <div class="pricing-box">
+
+        <div class="price-row">
+          <span>30 minuter</span>
+          <strong>40 kr</strong>
+        </div>
+
+        <div class="price-row">
+          <span>1 timme</span>
+          <strong>80 kr</strong>
+        </div>
+
+        <div class="price-row">
+          <span>1,5 timmar</span>
+          <strong>120 kr</strong>
+        </div>
+
+        <div class="price-row">
+          <span>2 timmar</span>
+          <strong>160 kr</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BOKNING -->
+
+  <section id="boka" class="booking">
+
+    <div class="section-inner">
+
+      <h2 class="section-title">
+        📅 Boka städhjälp
+      </h2>
+
+      <p class="section-subtitle">
+        Fyll i formuläret så öppnas ett färdigt mejl.
+      </p>
+
+      <div class="booking-box">
+
+        <form id="bookingForm">
+
+          <label for="name">
+            Namn
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            placeholder="Ditt namn"
+            required
+          >
+
+
+          <label for="email">
+            Din e-post
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="din@email.se"
+            required
+          >
+
+
+          <label for="date">
+            Önskat datum
+          </label>
+
+          <input
+            type="date"
+            id="date"
+            required
+          >
+
+
+          <label for="duration">
+            Hur länge?
+          </label>
+
+          <select id="duration">
+
+            <option value="30">
+              30 minuter – 40 kr
+            </option>
+
+            <option value="60">
+              1 timme – 80 kr
+            </option>
+
+            <option value="90">
+              1,5 timmar – 120 kr
+            </option>
+
+            <option value="120">
+              2 timmar – 160 kr
+            </option>
+
+          </select>
+
+
+          <label for="message">
+            Vad vill du ha hjälp med?
+          </label>
+
+          <textarea
+            id="message"
+            placeholder="Berätta vad du behöver hjälp med..."
+          ></textarea>
+
+
+          <button class="submit" type="submit">
+            📩 Skicka bokningsförfrågan
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SWISH -->
+
+  <section id="swish" class="swish-section">
+
+    <div class="section-inner">
+
+      <div class="swish-card">
+
+        <div class="swish-logo">
+          💙
+        </div>
+
+        <h2>
+          Betala med Swish
+        </h2>
+
+        <p>
+          Betalning kan göras enkelt med Swish.
+        </p>
+
+        <div class="swish-number">
+          072-378 26 29
+        </div>
+
+        <button
+          class="swish-button"
+          onclick="openSwish()"
+        >
+          💙 Öppna Swish
+        </button>
+
+        <p style="margin-top:15px;color:#667781;">
+          Öppna Swish på mobilen och betala.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- KONTAKT -->
+
+  <section id="kontakt" class="contact">
+
+    <div class="section-inner">
+
+      <h2 class="section-title">
+        📞 Kontakta oss
+      </h2>
+
+      <p class="section-subtitle">
+        Har du frågor om städhjälpen? Hör av dig!
+      </p>
+
+      <div class="contact-info">
+
+        <div class="contact-item">
+          📱
+          <a href="tel:0723782629">
+            072-378 26 29
+          </a>
+        </div>
+
+        <div class="contact-item">
+          ✉️
+          <span>
+            pixelolof.tuta.io
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      © 2026 PixelOlof Städhjälp
+    </p>
+
+    <p style="margin-top:5px;">
+      Rent • Enkelt • Prisvärt 🧹
+    </p>
+
+  </footer>
+
+
+  <script>
+
+    /* SWISH */
+
+    function openSwish() {
+
+      const number = "0723782629";
+
+      const swishURL =
+        "swish://payment?payee=" +
+        encodeURIComponent(number);
+
+      window.location.href = swishURL;
+    }
+
+
+    /* BOKNING */
+
+    document
+      .getElementById("bookingForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const name =
+          document.getElementById("name").value;
+
+        const email =
+          document.getElementById("email").value;
+
+        const date =
+          document.getElementById("date").value;
+
+        const duration =
+          document.getElementById("duration").value;
+
+        const message =
+          document.getElementById("message").value;
+
+
+        const price =
+          (Number(duration) / 30) * 40;
+
+
+        /*
+          OBS:
+          Byt adressen nedan till din riktiga
+          e-postadress när du har den.
+        */
+
+        const emailAddress =
+          "pixelolof.tuta.io";
+
+
+        const subject =
+          "Bokningsförfrågan – PixelOlof Städhjälp";
+
+
+        const body =
+          "Hej!%0D%0A%0D%0A" +
+
+          "Jag vill boka städhjälp.%0D%0A%0D%0A" +
+
+          "Namn: " +
+          encodeURIComponent(name) +
+          "%0D%0A" +
+
+          "Min e-post: " +
+          encodeURIComponent(email) +
+          "%0D%0A" +
+
+          "Datum: " +
+          encodeURIComponent(date) +
+          "%0D%0A" +
+
+          "Tid: " +
+          encodeURIComponent(duration) +
+          " minuter%0D%0A" +
+
+          "Pris: " +
+          encodeURIComponent(price) +
+          " kr%0D%0A%0D%0A" +
+
+          "Meddelande:%0D%0A" +
+          encodeURIComponent(message);
+
+
+        window.location.href =
+          "mailto:" +
+          emailAddress +
+          "?subject=" +
+          encodeURIComponent(subject) +
+          "&body=" +
+          body;
+
+      });
+
+  </script>
+
+</body>
+</html>
