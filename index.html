@@ -4,495 +4,688 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>PixelOlof Städhjälp | Rent & Fint</title>
-  <meta name="description" content="Enkel och prisvärd städhjälp. Endast 40 kr per 30 minuter.">
+  <title>Aron Städhjälp</title>
+  <meta name="description" content="Aron Städhjälp – enkel och prisvärd städhjälp för 40 kr per halvtimme.">
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
-    html {
-      scroll-behavior: smooth;
+    :root {
+      --green: #16a085;
+      --dark-green: #087f68;
+      --light-green: #eafff9;
+      --dark: #102a2a;
+      --gray: #687878;
+      --white: #ffffff;
+      --border: #dff1ec;
+      --shadow: 0 20px 55px rgba(0, 0, 0, 0.10);
     }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #f6f9fc;
-      color: #17212b;
-      line-height: 1.6;
+      color: var(--dark);
+      background: #f7fffc;
+      overflow-x: hidden;
     }
 
-    /* NAVIGATION */
+    /* ================= HEADER ================= */
 
-    nav {
+    header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid #e8eef3;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(22,160,133,0.12);
     }
 
-    .nav-inner {
-      max-width: 1100px;
+    nav {
+      max-width: 1150px;
       margin: auto;
-      height: 70px;
-      padding: 0 20px;
+      padding: 16px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
     .logo {
-      font-size: 21px;
-      font-weight: 800;
-      color: #087f73;
+      color: var(--dark);
       text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 900;
+      transition: 0.3s;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 25px;
+    .logo:hover {
+      color: var(--green);
+      transform: scale(1.04);
+    }
+
+    nav ul {
       list-style: none;
+      display: flex;
+      gap: 28px;
     }
 
-    .nav-links a {
-      color: #25313b;
+    nav ul a {
       text-decoration: none;
-      font-weight: 600;
+      color: var(--dark);
+      font-weight: 700;
+      transition: 0.3s;
     }
 
-    .nav-links a:hover {
-      color: #087f73;
+    nav ul a:hover {
+      color: var(--green);
     }
 
-    .nav-button {
-      background: #087f73;
-      color: white !important;
-      padding: 10px 17px;
-      border-radius: 10px;
-    }
-
-    /* HERO */
+    /* ================= HERO ================= */
 
     .hero {
-      min-height: 700px;
-      padding: 140px 20px 80px;
+      min-height: 100vh;
+      padding: 150px 22px 90px;
       display: flex;
       align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+
       background:
-        radial-gradient(circle at 80% 20%, rgba(30,190,170,0.16), transparent 30%),
-        linear-gradient(135deg, #ffffff, #edf9f7);
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(22,160,133,0.18),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 75%,
+          rgba(52,211,153,0.16),
+          transparent 32%
+        ),
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #edfff9
+        );
     }
 
-    .hero-inner {
-      max-width: 1100px;
-      width: 100%;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 60px;
-      align-items: center;
+    .hero-content {
+      max-width: 850px;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1s ease forwards;
     }
 
-    .badge {
+    .hero-icon {
+      font-size: 4.5rem;
       display: inline-block;
-      background: #dff7f3;
-      color: #087f73;
-      padding: 8px 14px;
-      border-radius: 50px;
-      font-weight: bold;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      animation: bounce 2.5s infinite;
     }
 
     .hero h1 {
-      font-size: clamp(42px, 7vw, 72px);
-      line-height: 1.03;
-      letter-spacing: -2px;
+      font-size: clamp(2.8rem, 7vw, 5.3rem);
+      line-height: 1;
+      letter-spacing: -3px;
       margin-bottom: 25px;
     }
 
     .hero h1 span {
-      color: #087f73;
+      color: var(--green);
     }
 
-    .hero-text {
-      font-size: 20px;
-      color: #586671;
-      max-width: 600px;
-      margin-bottom: 30px;
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 32px;
+      color: var(--gray);
+      font-size: 1.18rem;
+      line-height: 1.7;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 13px;
+      justify-content: center;
+      gap: 15px;
       flex-wrap: wrap;
     }
 
-    .button {
-      display: inline-block;
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 25px;
+      border-radius: 15px;
       text-decoration: none;
-      padding: 15px 23px;
-      border-radius: 12px;
-      font-size: 17px;
-      font-weight: bold;
-      transition: 0.2s;
+      font-weight: 900;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
     }
 
-    .primary {
-      background: #087f73;
+    .btn-primary {
+      background: var(--green);
       color: white;
+      box-shadow: 0 12px 28px rgba(22,160,133,0.25);
     }
 
-    .primary:hover {
-      transform: translateY(-2px);
-      background: #05695f;
+    .btn-primary:hover {
+      background: var(--dark-green);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(22,160,133,0.3);
     }
 
-    .secondary {
+    .btn-secondary {
       background: white;
-      color: #087f73;
-      border: 1px solid #d8e6e5;
+      color: var(--dark);
+      border: 1px solid var(--border);
     }
 
-    .secondary:hover {
-      transform: translateY(-2px);
+    .btn-secondary:hover {
+      color: var(--green);
+      border-color: var(--green);
+      transform: translateY(-5px);
     }
 
-    /* PRICE CARD */
+    /* Floating circles */
 
-    .price-card {
-      background: white;
-      padding: 38px;
-      border-radius: 25px;
-      box-shadow: 0 20px 60px rgba(20,50,60,0.12);
-      text-align: center;
-      border: 1px solid #edf1f3;
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.4;
+      animation: float 7s ease-in-out infinite;
     }
 
-    .clean-icon {
+    .bubble1 {
+      width: 180px;
+      height: 180px;
+      background: #9af5db;
+      left: -70px;
+      top: 22%;
+    }
+
+    .bubble2 {
+      width: 250px;
+      height: 250px;
+      background: #c3ffed;
+      right: -110px;
+      bottom: 8%;
+      animation-delay: 2s;
+    }
+
+    .bubble3 {
       width: 90px;
       height: 90px;
-      margin: auto auto 20px;
-      border-radius: 25px;
-      background: #e5f8f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
+      background: #b2f9e4;
+      right: 18%;
+      top: 17%;
+      animation-delay: 1s;
     }
 
-    .price-card h2 {
-      font-size: 25px;
-      margin-bottom: 12px;
-    }
-
-    .price {
-      font-size: 54px;
-      font-weight: 900;
-      color: #087f73;
-      line-height: 1;
-      margin: 15px 0 8px;
-    }
-
-    .price-small {
-      color: #687680;
-    }
-
-    .price-info {
-      margin: 25px 0;
-      padding: 15px;
-      background: #f5faf9;
-      border-radius: 12px;
-    }
-
-    /* SECTIONS */
+    /* ================= SECTIONS ================= */
 
     section {
-      padding: 90px 20px;
+      padding: 100px 22px;
     }
 
-    .section-inner {
+    .container {
       max-width: 1100px;
       margin: auto;
     }
 
     .section-title {
       text-align: center;
-      font-size: 38px;
-      margin-bottom: 12px;
+      margin-bottom: 55px;
     }
 
-    .section-subtitle {
-      text-align: center;
-      color: #65737d;
-      margin-bottom: 45px;
-      font-size: 18px;
+    .section-title span {
+      color: var(--green);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
-    /* SERVICES */
+    .section-title h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin-top: 10px;
+    }
 
-    .services {
+    .section-title p {
+      margin-top: 12px;
+      color: var(--gray);
+    }
+
+    /* ================= PRICE ================= */
+
+    .price-section {
       background: white;
     }
 
-    .service-grid {
+    .price-card {
+      max-width: 650px;
+      margin: auto;
+      padding: 48px 30px;
+      text-align: center;
+      background: linear-gradient(
+        145deg,
+        #ffffff,
+        #effff9
+      );
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 65px rgba(0,0,0,0.13);
+    }
+
+    .price {
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .price-sub {
+      color: var(--gray);
+      font-size: 1.1rem;
+    }
+
+    .price-note {
+      margin-top: 18px;
+      font-weight: 800;
+    }
+
+    /* ================= SERVICES ================= */
+
+    .services {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 22px;
     }
 
     .service {
-      padding: 30px;
-      border: 1px solid #e7edf0;
-      border-radius: 18px;
-      background: #fff;
-      transition: 0.2s;
+      background: white;
+      padding: 32px 25px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
     }
 
     .service:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(20,50,60,0.08);
+      transform: translateY(-10px);
+      box-shadow: var(--shadow);
+    }
+
+    .service::after {
+      content: "";
+      position: absolute;
+      height: 4px;
+      width: 0;
+      left: 0;
+      bottom: 0;
+      background: var(--green);
+      transition: 0.4s;
+    }
+
+    .service:hover::after {
+      width: 100%;
     }
 
     .service-icon {
-      font-size: 38px;
-      margin-bottom: 15px;
+      font-size: 2.5rem;
+      margin-bottom: 18px;
+      display: inline-block;
+      transition: 0.4s;
+    }
+
+    .service:hover .service-icon {
+      transform: scale(1.15) rotate(-5deg);
     }
 
     .service h3 {
-      margin-bottom: 8px;
-      font-size: 21px;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
     }
 
     .service p {
-      color: #687680;
+      color: var(--gray);
+      line-height: 1.6;
     }
 
-    /* PRICING */
+    /* ================= PRICE LIST ================= */
 
-    .pricing-box {
-      max-width: 700px;
+    .prices-section {
+      background: #effcf8;
+    }
+
+    .price-list {
+      max-width: 750px;
       margin: auto;
-      background: white;
-      border-radius: 22px;
-      padding: 35px;
-      box-shadow: 0 15px 50px rgba(20,50,60,0.08);
+      display: grid;
+      gap: 12px;
     }
 
     .price-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
-      border-bottom: 1px solid #edf0f2;
-      font-size: 18px;
+      padding: 21px 24px;
+      background: white;
+      border-radius: 17px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+      transition: 0.3s;
     }
 
-    .price-row:last-child {
-      border-bottom: none;
+    .price-row:hover {
+      transform: translateX(8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
     }
 
     .price-row strong {
-      color: #087f73;
+      color: var(--green);
+      font-size: 1.2rem;
     }
 
-    /* BOOKING */
+    /* ================= BOOKING ================= */
 
-    .booking {
-      background: #edf9f7;
+    .booking-section {
+      background: white;
     }
 
     .booking-box {
-      max-width: 700px;
+      max-width: 820px;
       margin: auto;
-      background: white;
-      padding: 35px;
-      border-radius: 22px;
-      box-shadow: 0 15px 50px rgba(20,50,60,0.08);
+      padding: 40px;
+      border-radius: 28px;
+      background: linear-gradient(
+        145deg,
+        #ffffff,
+        #f0fffb
+      );
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
     }
 
     label {
-      display: block;
-      margin: 16px 0 7px;
-      font-weight: bold;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .required {
+      color: #e74c3c;
     }
 
     input,
     select,
     textarea {
       width: 100%;
-      padding: 14px;
-      border: 1px solid #d9e2e6;
-      border-radius: 10px;
-      font-size: 16px;
+      padding: 14px 15px;
+      border: 1px solid #d5e8e3;
+      border-radius: 12px;
       outline: none;
+      background: white;
+      font: inherit;
+      transition: 0.3s;
     }
 
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: #087f73;
+      border-color: var(--green);
+      box-shadow: 0 0 0 4px rgba(22,160,133,0.10);
+      transform: translateY(-1px);
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 125px;
       resize: vertical;
     }
 
-    .submit {
+    .booking-btn {
       width: 100%;
-      border: none;
-      background: #087f73;
-      color: white;
-      padding: 16px;
-      border-radius: 11px;
-      font-size: 17px;
-      font-weight: bold;
-      margin-top: 22px;
-      cursor: pointer;
+      margin-top: 20px;
+      font-size: 1rem;
     }
 
-    .submit:hover {
-      background: #05695f;
-    }
-
-    /* SWISH */
+    /* ================= SWISH ================= */
 
     .swish-section {
-      background: #ffffff;
-    }
-
-    .swish-card {
-      max-width: 700px;
-      margin: auto;
-      padding: 40px;
-      border-radius: 25px;
+      color: white;
       text-align: center;
-      background: #f4fbff;
-      border: 1px solid #dceff7;
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(255,255,255,0.18),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #16a085,
+          #087f68
+        );
     }
 
-    .swish-logo {
-      font-size: 55px;
-      margin-bottom: 10px;
+    .swish-section h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 15px;
     }
 
-    .swish-card h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
+    .swish-section p {
+      opacity: 0.9;
+      margin-bottom: 22px;
     }
 
     .swish-number {
-      font-size: 28px;
-      font-weight: bold;
-      margin: 20px 0;
-      letter-spacing: 1px;
+      font-size: 1.7rem;
+      font-weight: 900;
+      margin-bottom: 25px;
     }
 
-    .swish-button {
+    .swish-btn {
       display: inline-block;
-      background: #00a8e8;
-      color: white;
       padding: 16px 30px;
-      border-radius: 12px;
+      border-radius: 15px;
+      background: white;
+      color: var(--dark-green);
       text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
+      font-weight: 900;
+      transition: 0.3s;
     }
 
-    .swish-button:hover {
-      background: #008bc1;
+    .swish-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
 
-    /* CONTACT */
+    /* ================= CONTACT ================= */
 
     .contact {
-      background: #17252b;
-      color: white;
       text-align: center;
-    }
-
-    .contact .section-subtitle {
-      color: #b8c6cc;
     }
 
     .contact-info {
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 18px;
       flex-wrap: wrap;
-      margin-top: 30px;
     }
 
-    .contact-item {
-      background: rgba(255,255,255,0.08);
-      padding: 18px 25px;
-      border-radius: 12px;
+    .contact-card {
+      min-width: 240px;
+      background: white;
+      padding: 23px 28px;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      transition: 0.3s;
     }
 
-    .contact-item a {
-      color: white;
+    .contact-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card strong {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .contact-card a {
+      color: var(--green);
+      font-weight: bold;
       text-decoration: none;
     }
 
-    /* FOOTER */
+    /* ================= FOOTER ================= */
 
     footer {
-      background: #101a1e;
-      color: #8fa0a8;
+      background: #092c28;
+      color: rgba(255,255,255,0.75);
       text-align: center;
-      padding: 25px 20px;
+      padding: 30px 20px;
     }
 
-    /* MOBILE */
+    /* ================= SCROLL ANIMATION ================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================= KEYFRAMES ================= */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-13px);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+      }
+
+      50% {
+        transform: translateY(-25px) translateX(15px);
+      }
+    }
+
+    /* ================= MOBILE ================= */
 
     @media (max-width: 800px) {
 
-      .nav-links {
+      nav ul {
         display: none;
       }
 
       .hero {
-        min-height: auto;
-        padding-top: 120px;
+        padding-top: 130px;
       }
 
-      .hero-inner {
+      .services {
         grid-template-columns: 1fr;
-        gap: 35px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .booking-box {
+        padding: 25px 18px;
+      }
+
+      .price {
+        font-size: 3.2rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      section {
+        padding: 75px 16px;
       }
 
       .hero h1 {
-        letter-spacing: -1px;
+        letter-spacing: -2px;
       }
 
-      .service-grid {
-        grid-template-columns: 1fr;
+      .hero p {
+        font-size: 1rem;
       }
 
-      section {
-        padding: 65px 20px;
+      .hero-buttons .btn {
+        width: 100%;
       }
 
-      .section-title {
-        font-size: 31px;
+      .price-row {
+        padding: 17px;
       }
 
-      .price-card {
-        padding: 28px 20px;
-      }
-
-      .booking-box,
-      .swish-card {
-        padding: 25px 20px;
+      .contact-card {
+        width: 100%;
       }
     }
   </style>
@@ -500,41 +693,40 @@
 
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- ================= HEADER ================= -->
 
-  <nav>
-    <div class="nav-inner">
+  <header>
+    <nav>
 
-      <a href="#" class="logo">
-        🧹 PixelOlof
+      <a href="#hem" class="logo">
+        🧹 Aron Städhjälp
       </a>
 
-      <ul class="nav-links">
+      <ul>
         <li><a href="#tjanster">Tjänster</a></li>
         <li><a href="#priser">Priser</a></li>
         <li><a href="#boka">Boka</a></li>
-        <li><a href="#swish">Swish</a></li>
-        <li>
-          <a href="#kontakt" class="nav-button">
-            Kontakt
-          </a>
-        </li>
+        <li><a href="#kontakt">Kontakt</a></li>
       </ul>
 
-    </div>
-  </nav>
+    </nav>
+  </header>
 
 
-  <!-- HERO -->
+  <main>
 
-  <header class="hero">
+    <!-- ================= HERO ================= -->
 
-    <div class="hero-inner">
+    <section class="hero" id="hem">
 
-      <div>
+      <div class="bubble bubble1"></div>
+      <div class="bubble bubble2"></div>
+      <div class="bubble bubble3"></div>
 
-        <div class="badge">
-          ✨ Enkel städhjälp
+      <div class="hero-content">
+
+        <div class="hero-icon">
+          🧹
         </div>
 
         <h1>
@@ -542,267 +734,359 @@
           <span>Enkelt pris.</span>
         </h1>
 
-        <p class="hero-text">
+        <p>
           Behöver du hjälp med städningen?
-          PixelOlof Städhjälp erbjuder enkel och
-          prisvärd hjälp för bara 40 kr per halvtimme.
+          Jag erbjuder enkel och prisvärd städhjälp
+          för endast <strong>40 kr per halvtimme.</strong>
         </p>
 
         <div class="hero-buttons">
-          <a href="#boka" class="button primary">
+
+          <a href="#boka" class="btn btn-primary">
             📅 Boka städhjälp
           </a>
 
-          <a href="#priser" class="button secondary">
+          <a href="#priser" class="btn btn-secondary">
             💰 Se priser
           </a>
+
         </div>
 
       </div>
 
+    </section>
 
-      <div class="price-card">
 
-        <div class="clean-icon">
-          🧹
+    <!-- ================= PRICE ================= -->
+
+    <section class="price-section">
+
+      <div class="container reveal">
+
+        <div class="section-title">
+
+          <span>Enkelt pris</span>
+
+          <h2>40 kr / halvtimme</h2>
+
+          <p>
+            Du betalar bara för den tid du behöver.
+          </p>
+
         </div>
+
+        <div class="price-card">
+
+          <div class="price">
+            40 kr
+          </div>
+
+          <div class="price-sub">
+            per 30 minuter
+          </div>
+
+          <div class="price-note">
+            1 timme = 80 kr
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= SERVICES ================= -->
+
+    <section id="tjanster">
+
+      <div class="container">
+
+        <div class="section-title reveal">
+
+          <span>Vad jag hjälper till med</span>
+
+          <h2>Mina tjänster</h2>
+
+          <p>
+            Enklare städning som gör hemmet fräschare.
+          </p>
+
+        </div>
+
+
+        <div class="services">
+
+          <div class="service reveal">
+
+            <div class="service-icon">
+              🧹
+            </div>
+
+            <h3>Dammsugning</h3>
+
+            <p>
+              Jag hjälper till med dammsugning
+              av golv och andra ytor där det behövs.
+            </p>
+
+          </div>
+
+
+          <div class="service reveal">
+
+            <div class="service-icon">
+              ✨
+            </div>
+
+            <h3>Torka av</h3>
+
+            <p>
+              Avtorkning av exempelvis bord,
+              ytor och andra lättåtkomliga områden.
+            </p>
+
+          </div>
+
+
+          <div class="service reveal">
+
+            <div class="service-icon">
+              🏠
+            </div>
+
+            <h3>Enklare städning</h3>
+
+            <p>
+              Hjälp med vanligare städuppgifter
+              efter vad du behöver.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PRICES ================= -->
+
+    <section class="prices-section" id="priser">
+
+      <div class="container">
+
+        <div class="section-title reveal">
+
+          <span>Prislista</span>
+
+          <h2>Enkelt och tydligt</h2>
+
+        </div>
+
+
+        <div class="price-list">
+
+          <div class="price-row reveal">
+            <span>30 minuter</span>
+            <strong>40 kr</strong>
+          </div>
+
+          <div class="price-row reveal">
+            <span>1 timme</span>
+            <strong>80 kr</strong>
+          </div>
+
+          <div class="price-row reveal">
+            <span>1,5 timmar</span>
+            <strong>120 kr</strong>
+          </div>
+
+          <div class="price-row reveal">
+            <span>2 timmar</span>
+            <strong>160 kr</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= BOOKING ================= -->
+
+    <section class="booking-section" id="boka">
+
+      <div class="container">
+
+        <div class="section-title reveal">
+
+          <span>Boka</span>
+
+          <h2>Boka städhjälp</h2>
+
+          <p>
+            Fyll i formuläret så kan vi komma överens om tiden.
+          </p>
+
+        </div>
+
+
+        <div class="booking-box reveal">
+
+          <form id="bookingForm">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+
+                <label for="name">
+                  Namn <span class="required">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  placeholder="Ditt namn">
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="phone">
+                  Telefonnummer <span class="required">*</span>
+                </label>
+
+                <input
+                  type="tel"
+                  id="phone"
+                  required
+                  placeholder="Ditt telefonnummer">
+
+              </div>
+
+
+              <div class="form-group full">
+
+                <label for="address">
+                  Adress <span class="required">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="address"
+                  required
+                  placeholder="Adressen där städningen ska ske">
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="email">
+                  E-post <span class="required">*</span>
+                </label>
+
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  placeholder="Din e-postadress">
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="date">
+                  Önskat datum <span class="required">*</span>
+                </label>
+
+                <input
+                  type="date"
+                  id="date"
+                  required>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="duration">
+                  Hur länge? <span class="required">*</span>
+                </label>
+
+                <select id="duration" required>
+
+                  <option value="">
+                    Välj tid
+                  </option>
+
+                  <option value="30 minuter – 40 kr">
+                    30 minuter – 40 kr
+                  </option>
+
+                  <option value="1 timme – 80 kr">
+                    1 timme – 80 kr
+                  </option>
+
+                  <option value="1,5 timmar – 120 kr">
+                    1,5 timmar – 120 kr
+                  </option>
+
+                  <option value="2 timmar – 160 kr">
+                    2 timmar – 160 kr
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-group full">
+
+                <label for="message">
+                  Meddelande
+                </label>
+
+                <textarea
+                  id="message"
+                  placeholder="Berätta gärna om något särskilt du vill ha hjälp med..."></textarea>
+
+              </div>
+
+            </div>
+
+
+            <button
+              type="submit"
+              class="btn btn-primary booking-btn">
+
+              📩 Skicka bokningsförfrågan
+
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= SWISH ================= -->
+
+    <section class="swish-section">
+
+      <div class="container reveal">
 
         <h2>
-          Städhjälp
-        </h2>
-
-        <div class="price">
-          40 kr
-        </div>
-
-        <div class="price-small">
-          per 30 minuter
-        </div>
-
-        <div class="price-info">
-          💡 1 timme = <strong>80 kr</strong>
-        </div>
-
-        <a href="#boka" class="button primary">
-          Boka nu →
-        </a>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-  <!-- TJÄNSTER -->
-
-  <section id="tjanster" class="services">
-
-    <div class="section-inner">
-
-      <h2 class="section-title">
-        Vad kan vi hjälpa till med?
-      </h2>
-
-      <p class="section-subtitle">
-        Enkel hjälp med vardagens städning.
-      </p>
-
-
-      <div class="service-grid">
-
-        <div class="service">
-          <div class="service-icon">🧹</div>
-          <h3>Dammsugning</h3>
-          <p>
-            Hjälp med att dammsuga golv och
-            andra vanliga ytor.
-          </p>
-        </div>
-
-        <div class="service">
-          <div class="service-icon">🧽</div>
-          <h3>Torka av</h3>
-          <p>
-            Vi kan hjälpa till att torka av
-            bord, bänkar och andra ytor.
-          </p>
-        </div>
-
-        <div class="service">
-          <div class="service-icon">✨</div>
-          <h3>Enklare städning</h3>
-          <p>
-            Behöver du hjälp med något annat?
-            Hör av dig så kan vi prata om det.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PRISER -->
-
-  <section id="priser">
-
-    <div class="section-inner">
-
-      <h2 class="section-title">
-        💰 Enkla priser
-      </h2>
-
-      <p class="section-subtitle">
-        Ingen krånglig prissättning.
-      </p>
-
-      <div class="pricing-box">
-
-        <div class="price-row">
-          <span>30 minuter</span>
-          <strong>40 kr</strong>
-        </div>
-
-        <div class="price-row">
-          <span>1 timme</span>
-          <strong>80 kr</strong>
-        </div>
-
-        <div class="price-row">
-          <span>1,5 timmar</span>
-          <strong>120 kr</strong>
-        </div>
-
-        <div class="price-row">
-          <span>2 timmar</span>
-          <strong>160 kr</strong>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- BOKNING -->
-
-  <section id="boka" class="booking">
-
-    <div class="section-inner">
-
-      <h2 class="section-title">
-        📅 Boka städhjälp
-      </h2>
-
-      <p class="section-subtitle">
-        Fyll i formuläret så öppnas ett färdigt mejl.
-      </p>
-
-      <div class="booking-box">
-
-        <form id="bookingForm">
-
-          <label for="name">
-            Namn
-          </label>
-
-          <input
-            type="text"
-            id="name"
-            placeholder="Ditt namn"
-            required
-          >
-
-
-          <label for="email">
-            Din e-post
-          </label>
-
-          <input
-            type="email"
-            id="email"
-            placeholder="din@email.se"
-            required
-          >
-
-
-          <label for="date">
-            Önskat datum
-          </label>
-
-          <input
-            type="date"
-            id="date"
-            required
-          >
-
-
-          <label for="duration">
-            Hur länge?
-          </label>
-
-          <select id="duration">
-
-            <option value="30">
-              30 minuter – 40 kr
-            </option>
-
-            <option value="60">
-              1 timme – 80 kr
-            </option>
-
-            <option value="90">
-              1,5 timmar – 120 kr
-            </option>
-
-            <option value="120">
-              2 timmar – 160 kr
-            </option>
-
-          </select>
-
-
-          <label for="message">
-            Vad vill du ha hjälp med?
-          </label>
-
-          <textarea
-            id="message"
-            placeholder="Berätta vad du behöver hjälp med..."
-          ></textarea>
-
-
-          <button class="submit" type="submit">
-            📩 Skicka bokningsförfrågan
-          </button>
-
-        </form>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- SWISH -->
-
-  <section id="swish" class="swish-section">
-
-    <div class="section-inner">
-
-      <div class="swish-card">
-
-        <div class="swish-logo">
-          💙
-        </div>
-
-        <h2>
-          Betala med Swish
+          💳 Betala med Swish
         </h2>
 
         <p>
@@ -813,93 +1097,107 @@
           072-378 26 29
         </div>
 
-        <button
-          class="swish-button"
-          onclick="openSwish()"
-        >
-          💙 Öppna Swish
-        </button>
+        <a
+          class="swish-btn"
+          href="swish://payment?payee=0723782629">
 
-        <p style="margin-top:15px;color:#667781;">
-          Öppna Swish på mobilen och betala.
-        </p>
+          Öppna Swish
+
+        </a>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- KONTAKT -->
+    <!-- ================= CONTACT ================= -->
 
-  <section id="kontakt" class="contact">
+    <section id="kontakt">
 
-    <div class="section-inner">
+      <div class="container contact reveal">
 
-      <h2 class="section-title">
-        📞 Kontakta oss
-      </h2>
+        <div class="section-title">
 
-      <p class="section-subtitle">
-        Har du frågor om städhjälpen? Hör av dig!
-      </p>
+          <span>Kontakt</span>
 
-      <div class="contact-info">
+          <h2>Har du frågor?</h2>
 
-        <div class="contact-item">
-          📱
-          <a href="tel:0723782629">
-            072-378 26 29
-          </a>
+          <p>
+            Hör gärna av dig.
+          </p>
+
         </div>
 
-        <div class="contact-item">
-          ✉️
-          <span>
-            pixelolof.tuta.io
-          </span>
+
+        <div class="contact-info">
+
+          <div class="contact-card">
+
+            <strong>
+              📞 Telefon
+            </strong>
+
+            <a href="tel:0723782629">
+              072-378 26 29
+            </a>
+
+          </div>
+
+
+          <div class="contact-card">
+
+            <strong>
+              ✉️ E-post
+            </strong>
+
+            <a href="mailto:pixelolof@tuta.io">
+              pixelolof@tuta.io
+            </a>
+
+          </div>
+
         </div>
 
       </div>
 
-    </div>
+    </section>
 
-  </section>
+  </main>
 
 
-  <!-- FOOTER -->
+  <!-- ================= FOOTER ================= -->
 
   <footer>
-
-    <p>
-      © 2026 PixelOlof Städhjälp
-    </p>
-
-    <p style="margin-top:5px;">
-      Rent • Enkelt • Prisvärt 🧹
-    </p>
-
+    © 2026 Aron Städhjälp
   </footer>
 
 
   <script>
 
-    /* SWISH */
+    /* ================= DATE ================= */
 
-    function openSwish() {
+    const dateInput =
+      document.getElementById("date");
 
-      const number = "0723782629";
+    const today =
+      new Date();
 
-      const swishURL =
-        "swish://payment?payee=" +
-        encodeURIComponent(number);
+    const year =
+      today.getFullYear();
 
-      window.location.href = swishURL;
-    }
+    const month =
+      String(today.getMonth() + 1)
+        .padStart(2, "0");
+
+    const day =
+      String(today.getDate())
+        .padStart(2, "0");
+
+    dateInput.min =
+      `${year}-${month}-${day}`;
 
 
-    /* BOKNING */
+    /* ================= BOOKING ================= */
 
     document
       .getElementById("bookingForm")
@@ -908,77 +1206,116 @@
         event.preventDefault();
 
         const name =
-          document.getElementById("name").value;
+          document
+            .getElementById("name")
+            .value
+            .trim();
+
+        const phone =
+          document
+            .getElementById("phone")
+            .value
+            .trim();
+
+        const address =
+          document
+            .getElementById("address")
+            .value
+            .trim();
 
         const email =
-          document.getElementById("email").value;
+          document
+            .getElementById("email")
+            .value
+            .trim();
 
         const date =
-          document.getElementById("date").value;
+          document
+            .getElementById("date")
+            .value;
 
         const duration =
-          document.getElementById("duration").value;
+          document
+            .getElementById("duration")
+            .value;
 
         const message =
-          document.getElementById("message").value;
-
-
-        const price =
-          (Number(duration) / 30) * 40;
-
-
-        /*
-          OBS:
-          Byt adressen nedan till din riktiga
-          e-postadress när du har den.
-        */
-
-        const emailAddress =
-          "pixelolof.tuta.io";
+          document
+            .getElementById("message")
+            .value
+            .trim();
 
 
         const subject =
-          "Bokningsförfrågan – PixelOlof Städhjälp";
+          encodeURIComponent(
+            "Bokningsförfrågan – Aron Städhjälp"
+          );
 
 
         const body =
-          "Hej!%0D%0A%0D%0A" +
+          encodeURIComponent(
+`Hej!
 
-          "Jag vill boka städhjälp.%0D%0A%0D%0A" +
+Jag vill boka städhjälp.
 
-          "Namn: " +
-          encodeURIComponent(name) +
-          "%0D%0A" +
+Namn: ${name}
+Telefon: ${phone}
+Adress: ${address}
+E-post: ${email}
+Önskat datum: ${date}
+Tid: ${duration}
 
-          "Min e-post: " +
-          encodeURIComponent(email) +
-          "%0D%0A" +
+Meddelande:
+${message}
 
-          "Datum: " +
-          encodeURIComponent(date) +
-          "%0D%0A" +
-
-          "Tid: " +
-          encodeURIComponent(duration) +
-          " minuter%0D%0A" +
-
-          "Pris: " +
-          encodeURIComponent(price) +
-          " kr%0D%0A%0D%0A" +
-
-          "Meddelande:%0D%0A" +
-          encodeURIComponent(message);
+Mvh
+${name}`
+          );
 
 
         window.location.href =
-          "mailto:" +
-          emailAddress +
-          "?subject=" +
-          encodeURIComponent(subject) +
-          "&body=" +
-          body;
+          `mailto:pixelolof@tuta.io?subject=${subject}&body=${body}`;
 
       });
+
+
+    /* ================= SCROLL ANIMATIONS ================= */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+
+    const observer =
+      new IntersectionObserver(
+        function(entries) {
+
+          entries.forEach(function(entry) {
+
+            if (entry.isIntersecting) {
+
+              entry.target
+                .classList
+                .add("visible");
+
+              observer
+                .unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+
+    revealElements.forEach(function(element) {
+
+      observer.observe(element);
+
+    });
 
   </script>
 
